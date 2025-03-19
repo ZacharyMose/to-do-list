@@ -40,6 +40,7 @@ h1{
 li{
     display: flex;
     column-gap: 9px;
+    left: 1rem;
     align-items: center;
     justify-content: center;
 
@@ -61,6 +62,7 @@ button{
 }
 
 #task-list{
+    position: relative;
     list-style: none;
     padding: 2rem;
     margin: 1rem 0;
@@ -71,7 +73,9 @@ button{
 }
 
 .tasks__container{
-    width: 250px;
+    position: relative;
+    width: 336px;
+    border-radius: 7px;
     background-color: hsl(0,100%,99%);
 }
 
