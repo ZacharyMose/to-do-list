@@ -1,0 +1,81 @@
+:root{
+
+}
+body{
+    background-color: hsl(166,85%,18%);
+    font-family: Arial, Helvetica, sans-serif;
+    display: flex;
+    align-items: center;
+    justify-items: center;
+
+}
+
+.to__do-list{
+    display: grid;
+    width: 450px;
+    height: auto;
+    border-radius: 10px;
+    background-color: hsl(166,80%,40%);
+    row-gap: 1rem;
+    justify-items: center;
+    align-items: center;
+}
+
+.container{
+    background-color: whitesmoke;
+    padding: 20px;
+    border-radius: 10px;
+    width: 300px;
+}
+
+h1{
+    text-align: center;
+}
+
+.input__container{
+    display: flex;
+    gap: 10px;
+}
+
+li{
+    display: flex;
+    column-gap: 9px;
+    align-items: center;
+    justify-content: center;
+
+}
+
+input{
+    flex: 1;
+    padding: 8px;
+}
+
+button{
+    width: 57px;
+    padding: 4px;
+    background-color:green ;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    color: white;
+}
+
+#task-list{
+    list-style: none;
+    padding: 2rem;
+    margin: 1rem 0;
+    display: grid;
+    row-gap: 7px;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.tasks__container{
+    width: 250px;
+    background-color: hsl(0,100%,99%);
+}
+
+.completed{
+    text-decoration: line-through;
+    color: grey;
+}
