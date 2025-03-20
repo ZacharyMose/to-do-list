@@ -3,6 +3,8 @@ document.addEventListener("DOMContentLoaded", loadTasks);
 function addTask(){
     let taskInput = document.getElementById("task-input");
     let taskText = taskInput.value.trim();
+    let dueDateInput = document.getElementById("dueDateInput");
+    let dueDate = dueDateInput.value;
 
     if(taskText ===""){
         alert("Please enter a task");
@@ -11,7 +13,7 @@ function addTask(){
 
     let taskList = document.getElementById("task-list");
     let li = document.createElement("li");
-    li.textContent = taskText;
+    li.innerHTML = `<span>${taskText}</span> - <small>${dueDate || "No due date"}</small>`
 
     let completeBtn = document.createElement("button");
     completeBtn.textContent = "\u2714 completed";
@@ -38,6 +40,7 @@ function addTask(){
     saveTasks();
 
     taskInput.value = "";
+    dueDateInputInput.value = "";
     console.log("button clicked");
 }
 

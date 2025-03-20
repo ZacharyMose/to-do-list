@@ -10,8 +10,11 @@
     <div class="to__do-list">
         <h1>To-Do list</h1>
         <div class="task__container container">
-            <input type="text" id="task-input" placeholder="Add task..">
-            <button onclick="addTask()">Add</button>
+            <div class="task__inputs">
+                <input type="text" id="task-input" placeholder="Add task..">
+                <input type="date" name="date" id="dueDateInput" placeholder="Enter your due date">
+            </div>
+            <button onclick="addTask()" id="add-button">Add</button>
         </div>
         <div class="tasks__container">
             <ul id="task-list"></ul>

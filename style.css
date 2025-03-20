@@ -12,13 +12,24 @@ body{
 
 .to__do-list{
     display: grid;
-    width: 450px;
+    width: 600px;
     height: auto;
     border-radius: 10px;
     background-color: hsl(166,80%,40%);
     row-gap: 1rem;
     justify-items: center;
     align-items: center;
+}
+
+.task__inputs{
+    position: relative;
+    display: grid;
+    row-gap: 1rem;
+}
+
+#add-button{
+    bottom: 1.5rem;
+    right: 1rem;
 }
 
 .container{
@@ -74,7 +85,7 @@ button{
 
 .tasks__container{
     position: relative;
-    width: 336px;
+    width: 400px;
     border-radius: 7px;
     background-color: hsl(0,100%,99%);
 }
