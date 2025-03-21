@@ -4,7 +4,10 @@ function addTask(){
     let taskInput = document.getElementById("task-input");
     let taskText = taskInput.value.trim();
     let dueDateInput = document.getElementById("dueDateInput");
+    let categoryInput = document.getElementById("category-input");
+
     let dueDate = dueDateInput.value;
+    let category = categoryInput.value;
 
     if(taskText ===""){
         alert("Please enter a task");
@@ -13,7 +16,7 @@ function addTask(){
 
     let taskList = document.getElementById("task-list");
     let li = document.createElement("li");
-    li.innerHTML = `<span>${taskText}</span> - <small>${dueDate || "No due date"}</small>`
+    li.innerHTML = `<span>${taskText}</span> - <small>${dueDate || "No due date"}</small> <strong>${category}</strong>`;
 
     let completeBtn = document.createElement("button");
     completeBtn.textContent = "\u2714 completed";
@@ -40,7 +43,7 @@ function addTask(){
     saveTasks();
 
     taskInput.value = "";
-    dueDateInputInput.value = "";
+    dueDateInput.value = "";
     console.log("button clicked");
 }
 
@@ -114,22 +117,29 @@ function removeTask(button){
 }
 
 function saveTasks(){
-    let tasks = [];
-    document.querySelectorAll("#task-list li").forEach(task =>{
-        tasks.push({text:task.childNodes[0].textContent.trim(), completed: task.classList.contains("completed")});
-    });
+  let tasks = [];
+  document.querySelectorAll("task-list li").forEach(task => {
+    let text = task.querySelector("span").textContent;
+    let dueDate = task.querySelector("small").textContent;
+    let category = task.querySelector("strong").textContent;
+    let isCompleted = task.classList.contains("completed");
 
-    localStorage.setItem("tasks",JSON.stringify(tasks));
+    tasks.push({text,dueDate,category, completed:isCompleted});
+  })
+
+  localStorage.setItem("tasks",JSON.stringify(tasks));
+  console.log("Saved tasks", localStorage.getItem("tasks"));
 }
 
 function loadTasks(){
     let savedTaks = JSON.parse(localStorage.getItem("tasks")) || [];
     let taskList = document.getElementById("task-list");
 
-    let li = document.createElement("li");
-    li.textContent = task.text;
+    savedTaks.forEach(task =>{
+        let li = document.createElement("li");
+        li.innerHTML = `<span>${taskText}</span> - <small>${dueDate || "No due date"}</small> <strong>${category}</strong>`;
 
-    let completeBtn = document.createElement("button");
+        let completeBtn = document.createElement("button");
     completeBtn.textContent = "\u2714 completed";
     completeBtn.onclick = function(){
         markAsComplete(this);
@@ -147,6 +157,7 @@ editBtn.onclick = function(){
     editTask(this);
 };
 
+
 if(task.completed){
     li.classList.add("completed");
 }
@@ -154,4 +165,6 @@ if(task.completed){
     li.appendChild(deleteBtn);
     li.appendChild(editBtn);
     taskList.appendChild(li);
+    });
+
 }

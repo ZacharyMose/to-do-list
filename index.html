@@ -12,21 +12,22 @@
         <h1>To-Do list</h1>
         <div class="task__container container">
             <div class="task__inputs">
-                <input type="text" class="task-input" placeholder="Add task..">
+                <input type="text" id="task-input" placeholder="Add task..">
                 <input type="date" name="date" id="dueDateInput" placeholder="Enter your due date">
+                <select name="select" id="category-input">
+                    <option value="Personal" hidden>Personal</option>
+                    <option value="Work">Work</option>
+                    <option value="Urgent">Urgent</option>
+                    <option value="Other">Other</option>
+                </select>
             </div>
-            <!-- <button onclick="addTask()" class="btn">Add</button> -->
-            <button  class="btn" id="add-button">Add</button>
+            <button onclick="addTask()" class="btn">Add</button>
         </div>
-        <div class="tasks__container">
-            <div class="contents">
-            <div class="text">4erter</div>
-            <div class="button1 fa-solid fa-trash" ><i class=""></i></div>
-            <div class="button2"><i class="fa-solid fa-pen"></i></div>
-            </div>
+        <div id="task-list">
+            <ul>
+            </ul>
         </div>
     </div>
-    <!-- <script src="script.js"></script> -->
-    <script src="app.js"></script>
+     <script src="script.js"></script>
 </body>
 </html>
