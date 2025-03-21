@@ -5,15 +5,21 @@ body{
     background-color: hsl(166,85%,18%);
     font-family: Arial, Helvetica, sans-serif;
     display: flex;
-    align-items: center;
-    justify-items: center;
-
+    justify-content: center;
+    height: 100vh;
 }
 
 .to__do-list{
+<<<<<<< HEAD
     display: grid;
     width: 600px;
     height: auto;
+=======
+    /* display: grid; */
+    position: relative;
+    width: 450px;
+    height: 98%;
+>>>>>>> aead6c0 (changed some js and css)
     border-radius: 10px;
     background-color: hsl(166,80%,40%);
     row-gap: 1rem;
@@ -71,8 +77,19 @@ button{
     cursor: pointer;
     color: white;
 }
+.button1,.button2{
+    width: 60px;
+    height: 40px;
+    border: none;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: green;
+    color: whitesmoke;
+}
 
-#task-list{
+/* #task-list{
     position: relative;
     list-style: none;
     padding: 2rem;
@@ -81,16 +98,49 @@ button{
     row-gap: 7px;
     justify-content: space-between;
     align-items: center;
-}
+} */
 
 .tasks__container{
+<<<<<<< HEAD
     position: relative;
     width: 400px;
+=======
+    position: absolute;
+    width: 336px;
+>>>>>>> aead6c0 (changed some js and css)
     border-radius: 7px;
     background-color: hsl(0,100%,99%);
+    height: 65%;
+    top: 180px;
+    left: 13%;
+    display: flex;
+    overflow-y: scroll ;
+    flex-direction: column;
+}
+.contents{
+    display: flex;
+    margin: 6px;
+}
+.text{
+    margin-right: auto;
+}
+.button1,.button2{
+    margin-left: 10px;
 }
 
 .completed{
     text-decoration: line-through;
     color: grey;
 }
+.fa-trash {
+    color: red;
+    font-size: 20px;
+    cursor: pointer;
+  }
+  
+  .fa-pen {
+    color: blue;
+    font-size: 20px;
+    cursor: pointer;
+  }
+  
