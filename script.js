@@ -69,18 +69,18 @@ function editTask(button){
 };
 
 function filterTasks(){
-    let searchText = document.getElementById("search-input").value.toLoweCase();
+    let searchText = document.getElementById("search-input").value.toLowerCase();
     let categoryFilter = document.getElementById("category-input").value;
     let dateFilter = document.getElementById("date-filter").value;
     let today = new Date().toISOString().split("T")[0];// get today's date
 
     document.querySelectorAll("#task-list li").forEach(task =>{
         let text = task.querySelector("span")?.textContent || "";
-        let dueDate = task.querySelector("small")?.textContent || "No due date";
+        let dueDate = task.querySelector("small")?.textContent || "";
         let category = task.querySelector("strong")?.textContent || "Other";
-        let taskDate = new Date(dueDate).toISOString().split("T")[0];
+        let taskDate = dueDate ? new Date(dueDate).toISOString().split("T")[0] : null;
 
-        let matchesSearch = taskText.includes(searchText);
+        let matchesSearch = text.includes(searchText);
         let matchesCategory = categoryFilter ==="" || category === categoryFilter;
         let matchesDate = true;
 
