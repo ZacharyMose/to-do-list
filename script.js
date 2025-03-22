@@ -68,6 +68,46 @@ function editTask(button){
     li.appendChild(saveBtn);
 };
 
+function filterTasks(){
+    let searchText = document.getElementById("search-input").value.toLoweCase();
+    let categoryFilter = document.getElementById("category-input").value;
+    let dateFilter = document.getElementById("date-filter").value;
+    let today = new Date().toISOString().split("T")[0];// get today's date
+
+    document.querySelectorAll("#task-list li").forEach(task =>{
+        let text = task.querySelector("span")?.textContent || "";
+        let dueDate = task.querySelector("small")?.textContent || "No due date";
+        let category = task.querySelector("strong")?.textContent || "Other";
+        let taskDate = new Date(dueDate).toISOString().split("T")[0];
+
+        let matchesSearch = taskText.includes(searchText);
+        let matchesCategory = categoryFilter ==="" || category === categoryFilter;
+        let matchesDate = true;
+
+        if(dateFilter ==="today"){
+            matchesDate = taskDate === today;
+        }
+
+        else if(dateFilter === "week"){
+            let weekFromNow = new Date();
+            weekFromNow.setDate(weekFromNow.getDate() + 7);
+            matchesDate = new Date(taskDate) >= new Date(today) && new Date(taskDate) <= weekFromNow;
+        }
+
+        else if(dateFilter === "overdue"){
+            matchesDate = new Date(taskDate) < new Date(today);
+        }
+
+        if(matchesCategory && matchesDate && matchesSearch){
+            task.style.display = "";
+        }
+
+        else{
+            task.style.display = "none";
+        }
+    });
+}
+
 function saveEditedTask(li, newText){
     if(newText ===""){
         alert("Please enter a task");
@@ -117,25 +157,30 @@ function removeTask(button){
 }
 
 function saveTasks(){
+    let taskListItems = document.querySelectorAll("#task-list li");
+    console.log("found tasks", taskListItems);
   let tasks = [];
   document.querySelectorAll("task-list li").forEach(task => {
-    let text = task.querySelector("span").textContent;
-    let dueDate = task.querySelector("small").textContent;
-    let category = task.querySelector("strong").textContent;
+    let text = task.querySelector("span")?.textContent || "";
+    let dueDate = task.querySelector("small")?.textContent || "No due date";
+    let category = task.querySelector("strong")?.textContent || "Other";
     let isCompleted = task.classList.contains("completed");
 
     tasks.push({text,dueDate,category, completed:isCompleted});
-  })
+  });
 
+  console.log(document.querySelectorAll("#task-list li"))
+  console.log("Tasks to be saved", tasks);
+  console.log("Tasks to be saved", JSON.stringify(tasks));
   localStorage.setItem("tasks",JSON.stringify(tasks));
-  console.log("Saved tasks", localStorage.getItem("tasks"));
 }
 
 function loadTasks(){
-    let savedTaks = JSON.parse(localStorage.getItem("tasks")) || [];
+    console.log("saded tasks",localStorage.getItem("tasks"));
+    let savedTasks = JSON.parse(localStorage.getItem("tasks")) || [];
     let taskList = document.getElementById("task-list");
 
-    savedTaks.forEach(task =>{
+    savedTasks.forEach(task =>{
         let li = document.createElement("li");
         li.innerHTML = `<span>${taskText}</span> - <small>${dueDate || "No due date"}</small> <strong>${category}</strong>`;
 
@@ -168,3 +213,7 @@ if(task.completed){
     });
 
 }
+
+document.getElementById("search-input").addEventListener("input", filterTasks);
+document.getElementById("category-filter").addEventListener("change", filterTasks);
+document.getElementById("date-filter").addEventListener("change", filterTasks);

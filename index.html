@@ -24,6 +24,19 @@
             <button onclick="addTask()" class="btn">Add</button>
         </div>
         <div id="task-list">
+            <input type="text" id="search-input" placeholder="Search tasks...">
+            <select name="categoryFilter" id="category-filter">
+                <option value="">All categories</option>
+                <option value="Work">Work</option>
+                <option value="Personal">Personal</option>
+                <option value="Other">Other</option>
+            </select>
+            <select name="dateFilter" id="date-filter">
+                <option value="">All dates</option>
+                <option value="today">Due Today</option>
+                <option value="week">Due this Week</option>
+                <option value="overdue">Overdue</option>
+            </select>
             <ul>
             </ul>
         </div>
